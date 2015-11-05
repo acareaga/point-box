@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:session][:username])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to user_path(@user.username)
+      if @user.role == "admin"
+        redirect_to admin_path(@user.username)
+      else
+        redirect_to user_path(@user.username)
+      end
     else
       flash.now[:error] = "Invalid. Try Again."
       render :new
