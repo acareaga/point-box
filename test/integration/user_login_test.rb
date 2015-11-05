@@ -10,16 +10,5 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Logout")
   end
 
-  def login_user
-    User.create(username:        "spaige",
-                password:        "password",
-                first_name:      "Shannon",
-                last_name:       "Paige",
-                top_destination: "Bora Bora")
 
-    visit login_path
-    fill_in "Username",        with: "spaige"
-    fill_in "Password",        with: 'password'
-    click_button "Login"
-  end
 end
