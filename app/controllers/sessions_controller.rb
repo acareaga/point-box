@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       if @user.role == "admin"
-        redirect_to admin_path(@user.username)
+        redirect_to admin_path(@user)
       else
-        redirect_to user_path(@user.username)
+        redirect_to user_path(@user)
       end
     else
       flash.now[:error] = "Invalid. Try Again."

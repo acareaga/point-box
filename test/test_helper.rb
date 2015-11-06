@@ -30,7 +30,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def login_admin
-    User.create(username:        "aaron",
+    admin = User.create(username:        "aaron",
                 password:        "password",
                 first_name:      "Admin",
                 last_name:       "McGee",
