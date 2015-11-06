@@ -16,6 +16,13 @@ main {
   font-size: 18px
 }
 
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
 #nav-mobile {
   margin-right: 20px;
 }
