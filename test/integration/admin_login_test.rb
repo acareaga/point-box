@@ -11,8 +11,15 @@ class AdminLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "a non-admin can not see the admin dashboard" do
+    admin = User.create(username:        "aaron",
+                password:        "password",
+                first_name:      "Admin",
+                last_name:       "McGee",
+                top_destination: "Bora Bora",
+                role:             1  )
     login_user
-    visit '/admin/aaron'
+
+    visit admin_path(admin)
 
     assert page.has_content?("404")
   end

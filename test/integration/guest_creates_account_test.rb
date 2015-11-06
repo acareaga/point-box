@@ -11,7 +11,6 @@ class GuestCreatesAccountTest < ActionDispatch::IntegrationTest
     fill_in "Top destination", with: "Bora Bora"
     click_button "Create Account"
 
-    assert_equal "/users/spaige", current_path
     assert page.has_content?("Welcome Shannon")
     assert page.has_content?("Points: 100")
   end

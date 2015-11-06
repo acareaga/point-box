@@ -9,6 +9,4 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Points:")
     assert page.has_content?("Logout")
   end
-
-
 end
