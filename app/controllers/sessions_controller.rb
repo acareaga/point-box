@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  # def create # See -- Creating Actual Users on CM OAuth
+  #   render text: request.env["omniauth.auth"].inspect
+  # end
+
   def create
     @user = User.find_by(username: params[:session][:username])
     if @user && @user.authenticate(params[:session][:password])
