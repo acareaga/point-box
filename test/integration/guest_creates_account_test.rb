@@ -14,4 +14,16 @@ class GuestCreatesAccountTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Welcome Shannon")
     assert page.has_content?("Points: 100")
   end
+
+  test 'guest cannot create an account with missing field' do
+    visit new_user_path
+
+    fill_in "Username", with: "spaige"
+    fill_in "First name", with: "Shannon"
+    fill_in "Last name", with: "Paige"
+    fill_in "Top destination", with: "Bora Bora"
+    click_button "Create Account"
+
+    assert page.has_content?("Invalid account registration. Please try again.")
+  end
 end

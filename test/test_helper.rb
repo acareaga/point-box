@@ -31,11 +31,11 @@ class ActionDispatch::IntegrationTest
 
   def login_admin
     admin = User.create(username:        "aaron",
-                password:        "password",
-                first_name:      "Admin",
-                last_name:       "McGee",
-                top_destination: "Bora Bora",
-                role:             1  )
+                        password:        "password",
+                        first_name:      "Admin",
+                        last_name:       "McGee",
+                        top_destination: "Bora Bora",
+                        role:             1  )
 
     visit login_path
     fill_in "Username",        with: "aaron"
