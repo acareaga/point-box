@@ -23,7 +23,7 @@ class AdminLoginTest < ActionDispatch::IntegrationTest
     fill_in "Password",        with: 'incorrect_password'
     click_button "Login"
 
-    assert page.has_content?("404")
+    assert page.has_content?("Invalid. Try Again.")
   end
 
   test "a non-admin cannot access the admin dashboard" do
