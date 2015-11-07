@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
   def new
+    @admin = User.find(params[:admin_id]) if params[:admin_id]
     @user = User.new
   end
 
   def create
+    @admin = User.find(params[:admin_id]) if params[:admin_id]
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      if @admin
+        redirect_to admin_path(@admin)
+      else
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      end
     else
       flash.now[:error] = @user.errors.full_messages.join(', ')
       render :new
