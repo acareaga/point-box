@@ -1,6 +1,6 @@
 <h1>Create an account</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, url: users_path(admin_id: @admin)) do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %>
   <%= f.label :password %>
@@ -11,5 +11,9 @@
   <%= f.text_field :last_name %>
   <%= f.label :top_destination %>
   <%= f.text_field :top_destination %>
-<%= f.submit "Create Account" %>
+  <% if @admin %>
+    <%= f.label :points_available %>
+    <%= f.text_field :points_available %>
+  <% end %>
+  <%= f.submit "Create Account" %>
 <% end %>
