@@ -1,7 +1,16 @@
 <h1>Admin Dashboard</h1>
 
+
+
+
+
+<%= link_to "New Reward", new_admin_reward_path(@user.id)  %>
+
+
 <h2>Rewards:</h2>
+<% Reward.all.each do |reward| %>
+  <%= reward.name %>
+  <%= reward.description %>
+<% end %>
 
 <h2>Users:</h2>
-
-<%= link_to "New Reward", new_admin_reward_path  %>
