@@ -17,5 +17,6 @@ class AdminCrudRewardsTest < ActionDispatch::IntegrationTest
     click_button "Create Reward"
 
     assert page.has_content?("Admin Dashboard")
+    assert page.has_content?("Bora Bora")
   end
 end

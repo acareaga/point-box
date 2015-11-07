@@ -10,19 +10,33 @@ class AdminLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Logout")
   end
 
-  test "a non-admin can not see the admin dashboard" do
+  test "admin cannot login with incorrect password" do
     admin = User.create(username:        "aaron",
-                password:        "password",
-                first_name:      "Admin",
-                last_name:       "McGee",
-                top_destination: "Bora Bora",
-                role:             1  )
+                         password:        "password",
+                         first_name:      "Admin",
+                         last_name:       "McGee",
+                         top_destination: "Bora Bora",
+                         role:             1)
+
+    visit login_path
+    fill_in "Username",        with: "aaron"
+    fill_in "Password",        with: 'incorrect_password'
+    click_button "Login"
+
+    assert page.has_content?("Invalid. Try Again.")
+  end
+
+  test "a non-admin cannot access the admin dashboard" do
+    admin = User.create(username:        "aaron",
+                        password:        "password",
+                        first_name:      "Admin",
+                        last_name:       "McGee",
+                        top_destination: "Bora Bora",
+                        role:             0)
     login_user
 
     visit admin_path(admin)
 
     assert page.has_content?("404")
   end
-
-
 end
