@@ -1,3 +1,5 @@
+<%= binding.pry %>
+
 <h1>Welcome <%= @user.first_name %></h1>
 <p>Points: <%= @user.reload.points_available %></p>
 <p>Points Redeemed: <%= @user.reload.points_redeemed %></p>
@@ -8,6 +10,6 @@
   <%= reward.description %>
 <% end %>
 
-<%= link_to "Purchase Reward", rewards_path(user_id: @user.id) %>
+<%= link_to "View Rewards to Purchase", user_rewards_path(@user) %>
 <%= link_to "Edit Account", edit_user_path(@user) %> |
 <%= link_to "Delete Account", user_path(@user), method: :delete %>

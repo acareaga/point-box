@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :rewards, only: [:show, :index]
 
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :rewards, only: [:new, :create]
+    resources :rewards, only: [:new, :create, :index]
   end
 
   resources :admin do

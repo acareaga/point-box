@@ -1,11 +1,11 @@
 class RewardsController < ApplicationController
 
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @user.rewards << Reward.find(params[:reward_id])
     # User.deduct_points(@user.id)
     # see user.rb

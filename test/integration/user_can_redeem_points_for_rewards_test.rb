@@ -8,13 +8,12 @@ class UserCanRedeemPointsForRewardsTest < ActionDispatch::IntegrationTest
 
     visit user_path(User.find_by(username: "spaige"))
 
-    click_link("Purchase Reward")
+    click_link("View Rewards to Purchase")
 
     assert page.has_content?("Rewards:")
     within ("#paris") do
-      click_link("Purchase This One")
+      click_link("Purchase Reward")
     end
-
 
     assert current_path, user_path(User.find_by(username: "spaige"))
     assert page.has_content?("Paris")

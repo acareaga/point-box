@@ -4,6 +4,6 @@
   <div id=<%="#{reward.name.downcase}" %>>
     <%= reward.name %>
     <%= reward.description %>
-    <%= link_to "Purchase This One", user_rewards_path(@user, reward_id: reward.id), method: :post %>
+    <%= link_to "Purchase Reward", user_rewards_path(@user, reward_id: reward.id), method: :post %>
   </div>
 <% end %>
