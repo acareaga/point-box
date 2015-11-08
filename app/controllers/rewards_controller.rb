@@ -14,11 +14,10 @@ class RewardsController < ApplicationController
     elsif @reward.point_value > @user.points_available
       flash[:error] = "You don't have enought points for this!!!"
     else
-      latest_reward_points = @reward.point_value
-      new_points = @user.points_available - latest_reward_points
-      new_redeemed_points = @user.points_redeemed + latest_reward_points
-      @user.update_attributes(points_available: new_points)
-      @user.update_attributes(points_redeemed: new_redeemed_points)
+      new_points_available = @user.points_available - @reward.point_value
+      new_redeemed_points = @user.points_redeemed + @reward.point_value
+      @user.update_attributes!(points_available: new_points_available)
+      @user.update_attributes!(points_redeemed: new_redeemed_points)
       @user.rewards << @reward
       @user.save
       flash[:notice] = "You bought it!!!"
