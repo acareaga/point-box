@@ -54,7 +54,7 @@ class AdminCrudUsersTest < ActionDispatch::IntegrationTest
     within("#spaige") do
       click_link "Delete User"
     end
-save_and_open_page
+
     assert page.has_content?("Admin Dashboard")
     refute page.has_content?("spaige")
   end

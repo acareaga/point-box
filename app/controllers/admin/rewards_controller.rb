@@ -1,7 +1,6 @@
 class Admin::RewardsController < Admin::BaseController
 
   def new
-    binding.pry
     @admin = User.find(params[:admin_id])
     @reward = Reward.new
   end

@@ -3,7 +3,6 @@ require 'test_helper'
 class AdminCrudRewardsTest < ActionDispatch::IntegrationTest
 
   test 'admin can create a new reward' do
-    skip
     login_admin
 
     assert page.has_content?("Admin Dashboard")
