@@ -5,7 +5,6 @@ require 'capybara/rails'
 require 'mocha/mini_test'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 end
 
@@ -16,12 +15,22 @@ class ActionDispatch::IntegrationTest
     reset_session!
   end
 
-  def login_user
+  def create_user
     User.create(username:        "spaige",
                 password:        "password",
                 first_name:      "Shannon",
                 last_name:       "Paige",
                 top_destination: "Bora Bora")
+  end
+
+  def create_reward
+    Reward.create(name: "Bora Bora",
+                  point_value: "500",
+                  description: "Best vacation ever!")
+  end
+
+  def login_user
+    create_user
 
     visit login_path
     fill_in "Username",        with: "spaige"
@@ -32,8 +41,8 @@ class ActionDispatch::IntegrationTest
   def login_admin
     admin = User.create(username:        "aaron",
                         password:        "password",
-                        first_name:      "Admin",
-                        last_name:       "McGee",
+                        first_name:      "Aaron",
+                        last_name:       "Careaga",
                         top_destination: "Bora Bora",
                         role:             1  )
 

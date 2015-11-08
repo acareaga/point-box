@@ -2,15 +2,21 @@
 
 <h2>Rewards:</h2>
 <% Reward.all.each do |reward| %>
-  <%= reward.name %>
-  <%= reward.description %>
+  <div id = <%=reward.name.downcase %> >
+  <%= reward.name %><br>
+  <%= reward.description %><br>
+  <%= link_to "Edit", edit_admin_reward_path(@admin, reward) %> |
+  <%= link_to "Delete", admin_reward_path(@admin, reward), method: :delete %><br><br>
 <% end %>
 
-<%= link_to "New Reward", new_admin_reward_path(@user.id)  %>
+<%= link_to "New Reward", new_admin_reward_path(@admin)  %>
 
 <h2>Users:</h2>
 <% User.all.each do |user| %>
-  <%= user.username %>
+  <div id = <%=user.username.downcase %> >
+  <%= user.username %> | <%= link_to 'Edit User', edit_admin_user_path(@admin, user) %> |
+  <%= link_to 'Delete User', admin_user_path(@admin, user), method: :delete %>
+  </div>
 <% end %>
 
 <%= link_to "New User", new_user_path(admin_id: params[:id])  %>

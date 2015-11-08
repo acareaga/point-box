@@ -9,3 +9,5 @@
 <% end %>
 
 <%= link_to "Purchase Reward", rewards_path(user_id: @user.id) %>
+<%= link_to "Edit Account", edit_user_path(@user) %> |
+<%= link_to "Delete Account", user_path(@user), method: :delete %>

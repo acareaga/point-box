@@ -2,6 +2,6 @@ class AdminController < ApplicationController
   before_action :require_admin
 
   def show
-    @user = User.find(params[:id])
+    @admin = current_user
   end
 end
