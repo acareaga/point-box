@@ -1,6 +1,6 @@
-<h1>Create Reward</h1>
+<h1>Hello, <%=@admin.first_name %>. Please Create Reward</h1>
 
-<%= form_for(@reward, url: admin_rewards_path(@user.id)) do |f| %>
+<%= form_for(@reward, url: admin_rewards_path(@admin)) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :point_value, "Point Value" %>
