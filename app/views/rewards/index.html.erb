@@ -1,0 +1,9 @@
+<h1>You are Now Purchasing Rewards:</h1>
+
+<% Reward.all.each do |reward| %>
+  <div id=<%="#{reward.name.downcase}" %>>
+    <%= reward.name %>
+    <%= reward.description %>
+    <%= link_to "Purchase This One", user_rewards_path(@user, reward_id: reward.id), method: :post %>
+  </div>
+<% end %>

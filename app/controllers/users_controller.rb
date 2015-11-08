@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def new
     @admin = User.find(params[:admin_id]) if params[:admin_id]
     @user = User.new
@@ -24,10 +25,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :first_name, :last_name, :top_destination)
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :points_available, :points_redeemed, :top_destination)
   end
 end

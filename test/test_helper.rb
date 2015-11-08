@@ -42,4 +42,10 @@ class ActionDispatch::IntegrationTest
     fill_in "Password",        with: 'password'
     click_button "Login"
   end
+
+  def create_reward
+    reward = Reward.create(name: "Paris",
+                           description: "Fun trip!",
+                           point_value: 10)
+  end
 end
