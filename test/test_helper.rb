@@ -5,7 +5,6 @@ require 'capybara/rails'
 require 'mocha/mini_test'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 end
 
@@ -22,6 +21,12 @@ class ActionDispatch::IntegrationTest
                 first_name:      "Shannon",
                 last_name:       "Paige",
                 top_destination: "Bora Bora")
+  end
+
+  def create_reward
+    Reward.create(name: "Bora Bora",
+                  point_value: "500",
+                  description: "Best vacation ever!")
   end
 
   def login_user
@@ -46,5 +51,4 @@ class ActionDispatch::IntegrationTest
     fill_in "Password",        with: 'password'
     click_button "Login"
   end
-
 end
