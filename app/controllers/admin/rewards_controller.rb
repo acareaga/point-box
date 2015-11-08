@@ -16,6 +16,23 @@ class Admin::RewardsController < Admin::BaseController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @reward.update(reward_params)
+      redirect_to @reward
+    else
+      flash.now[:errors] = @reward.error.full_messages.join(" ,")
+      render :edit
+    end
+  end
+
+  def destroy
+    Reward.destroy(params[:id])
+    redirect_to admin_path(params[:format])
+  end
+
   private
 
   def reward_params

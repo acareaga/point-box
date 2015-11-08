@@ -4,6 +4,8 @@
 <% Reward.all.each do |reward| %>
   <%= reward.name %>
   <%= reward.description %>
+  <%= link_to "Edit", edit_admin_reward_path(@user.id) %><br>
+  <%= link_to "Delete", admin_reward_path(reward), method: :delete %><br><br>
 <% end %>
 
 <%= link_to "New Reward", new_admin_reward_path(@user.id)  %>

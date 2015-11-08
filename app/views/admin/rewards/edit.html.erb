@@ -1,0 +1,11 @@
+<h1>Edit a Reward</h1>
+
+<%= form_for(@reward, url: admin_rewards_path(@user.id)) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :point_value, "Point Value" %>
+  <%= f.text_field :point_value %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit "Update Reward" %>
+<% end %>

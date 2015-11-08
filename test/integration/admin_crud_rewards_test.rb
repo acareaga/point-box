@@ -19,4 +19,38 @@ class AdminCrudRewardsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Admin Dashboard")
     assert page.has_content?("Bora Bora")
   end
+
+  test 'admin can edit an existing reward' do
+    login_admin
+
+    assert page.has_content?("Admin Dashboard")
+
+    create_reward
+
+    click_link "Edit"
+
+    assert new_admin_reward_path, current_path
+
+    fill_in "Point Value", with: "10"
+
+    click_button "Update Reward"
+
+    assert page.has_content?("Admin Dashboard")
+    assert page.has_content?("10")
+  end
+
+  test 'admin can delete an existing reward' do
+    skip
+    login_admin
+
+    assert page.has_content?("Admin Dashboard")
+
+    create_reward
+
+    click_link "Delete"
+
+    assert page.has_content?("Admin Dashboard")
+    assert page.has_content?("spaige")
+    refute page.has_content?("Bora Bora")
+  end
 end
