@@ -33,4 +33,24 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Invalid. Try Again.")
     assert page.has_content?("Login")
   end
+
+  test "users can only see their own dashboard" do
+    jimbo = User.create(username: "Jimbo",
+                       password: "pass", points_available: 50000)
+    create_user
+    login_user
+
+    visit user_path(User.find_by(username: "Jimbo"))
+
+    assert page.has_content?("Shannon")
+  end
+
+  test "guests can't see dashboards" do
+    jimbo = User.create(username: "Jimbo",
+                       password: "pass", points_available: 50000)
+
+    visit user_path(User.find_by(username: "Jimbo"))
+
+    assert page.has_content?("404")
+  end
 end
