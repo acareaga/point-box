@@ -22,4 +22,40 @@ class AdminCrudUsersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Admin Dashboard")
     assert page.has_content?("spaige")
   end
+
+  test 'admin can edit a user' do
+    create_user
+    login_admin
+
+    assert page.has_content?("Admin Dashboard")
+
+    within("#spaige") do
+      click_link "Edit User"
+    end
+
+    fill_in "Username", with: "newusername"
+    fill_in "Password", with: 'newpassword'
+    fill_in "First name", with: "NewFirst"
+    fill_in "Last name", with: "NewLast"
+    fill_in "Top destination", with: "NewDestination"
+    fill_in "Points", with: 50000
+    click_button "Update Account"
+
+    assert page.has_content?("Admin Dashboard")
+    assert page.has_content?("newusername")
+  end
+
+  test 'admin can create delete a user' do
+    create_user
+    login_admin
+
+    assert page.has_content?("Admin Dashboard")
+
+    within("#spaige") do
+      click_link "Delete User"
+    end
+
+    assert page.has_content?("Admin Dashboard")
+    refute page.has_content?("spaige")
+  end
 end

@@ -16,12 +16,16 @@ class ActionDispatch::IntegrationTest
     reset_session!
   end
 
-  def login_user
+  def create_user
     User.create(username:        "spaige",
                 password:        "password",
                 first_name:      "Shannon",
                 last_name:       "Paige",
                 top_destination: "Bora Bora")
+  end
+
+  def login_user
+    create_user
 
     visit login_path
     fill_in "Username",        with: "spaige"
@@ -32,8 +36,8 @@ class ActionDispatch::IntegrationTest
   def login_admin
     admin = User.create(username:        "aaron",
                         password:        "password",
-                        first_name:      "Admin",
-                        last_name:       "McGee",
+                        first_name:      "Aaron",
+                        last_name:       "Careaga",
                         top_destination: "Bora Bora",
                         role:             1  )
 
@@ -42,4 +46,5 @@ class ActionDispatch::IntegrationTest
     fill_in "Password",        with: 'password'
     click_button "Login"
   end
+
 end
