@@ -15,8 +15,8 @@ class UserCanRedeemPointsForRewardsTest < ActionDispatch::IntegrationTest
       click_link("Purchase This One")
     end
 
-    assert current_path, user_path(User.find_by(username: "spaige"))
 
+    assert current_path, user_path(User.find_by(username: "spaige"))
     assert page.has_content?("Paris")
     assert page.has_content?("90")
   end
