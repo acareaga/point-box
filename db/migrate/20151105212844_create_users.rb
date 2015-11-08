@@ -5,9 +5,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :top_destination
-      t.integer :points_available,  default: 100
-      t.integer :points_redeemed,   default: 0
-      t.integer :role,              default: 0
+      t.integer :points_available
+      t.integer :points_redeemed
+      t.integer :role
       t.string :password_digest
 
       t.timestamps null: false
