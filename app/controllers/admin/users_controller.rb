@@ -3,19 +3,36 @@ class Admin::UsersController < Admin::BaseController
 
   def set_up
     @admin = current_user
-    @user = User.find(params[:id])
+
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to admin_path(@admin)
+    else
+      flash.now[:error] = @user.errors.full_messages.join(', ')
+      render :new
+    end
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
     @user.update(user_params)
     flash.notice = "User #{@user.username} Updated!"
     redirect_to admin_path(@admin)
   end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
     flash.notice = "User Deleted"
     redirect_to admin_path(@admin)

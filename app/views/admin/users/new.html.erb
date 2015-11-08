@@ -1,0 +1,17 @@
+<h1>Create an account</h1>
+
+<%= form_for(@user, url: admin_users_path(@admin)) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :top_destination %>
+  <%= f.text_field :top_destination %>
+  <%= f.label :points_available %>
+  <%= f.text_field :points_available %>
+  <%= f.submit "Create Account" %>
+<% end %>

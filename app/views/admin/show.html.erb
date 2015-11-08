@@ -5,6 +5,11 @@
   <div id = <%=reward.name.downcase %> >
   <%= reward.name %><br>
   <%= reward.description %><br>
+  <% if reward.image.exists? %>
+    <!-- <div id="reward_image" size=50px> -->
+      <%= image_tag(reward.image.url, width:"150")%>
+    <!-- </div> -->
+  <% end %>
   <%= link_to "Edit", edit_admin_reward_path(@admin, reward) %> |
   <%= link_to "Delete", admin_reward_path(@admin, reward), method: :delete %><br><br>
 <% end %>
@@ -20,4 +25,4 @@
   </div>
 <% end %>
 
-<%= link_to "New User", new_user_path(admin_id: params[:id])  %>
+<%= link_to "New User", new_admin_user_path(@admin)  %>
