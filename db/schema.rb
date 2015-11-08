@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 20151107203640) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "top_destination"
-    t.integer  "points_available", default: 100
-    t.integer  "points_redeemed",  default: 0
-    t.integer  "role",             default: 0
+    t.integer  "points_available"
+    t.integer  "points_redeemed"
+    t.integer  "role"
     t.string   "password_digest"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_foreign_key "user_rewards", "rewards"

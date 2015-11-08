@@ -17,6 +17,7 @@ class UserCanRedeemPointsForRewardsTest < ActionDispatch::IntegrationTest
 
     assert current_path, user_path(User.find_by(username: "spaige"))
     assert page.has_content?("Paris")
+    save_and_open_page
     assert page.has_content?("90")
   end
 end
