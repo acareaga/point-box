@@ -1,2 +1,6 @@
 <h1>Welcome <%= @user.first_name %></h1>
+
+<%= link_to "Edit Account", edit_user_path(@user) %> |
+<%= link_to "Delete Account", user_path(@user), method: :delete %>
+
 <p>Points: <%= @user.points_available %></p>

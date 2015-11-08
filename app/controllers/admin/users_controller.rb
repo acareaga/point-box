@@ -5,7 +5,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    params
     @admin = User.find(params[:admin_id])
     @user = User.find(params[:id])
     @user.update(user_params)

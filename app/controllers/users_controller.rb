@@ -20,8 +20,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash.notice = "#{@user.username} Updated!"
+      redirect_to user_path(@user)
+    else
+      flash.now[:errors] = @user.error.full_messages.join(" ,")
+      render :edit
+    end
+  end
+
   def show
     @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path
   end
 
 
