@@ -17,8 +17,17 @@
         <div class="nav-wrapper cyan darken-1">
           <a href="/" class="brand-logo">TravelPoints</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Login</a></li>
-            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <% if current_user.nil? %>
+              <li><a href="/">Login</a></li>
+            <% elsif current_user.role == "admin" %>
+              <li><%= link_to "Dashboard", admin_path(current_user) %></li>
+              <li><%= link_to "Create Reward", new_admin_reward_path(current_user) %></li>
+              <li><%= link_to "Create User", new_admin_user_path(current_user) %></li>
+              <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <% else %>
+              <li><%#= link_to "Dashboard", user_path(current_user) %></li>
+              <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <% end %>
           </ul>
         </div>
       </nav>

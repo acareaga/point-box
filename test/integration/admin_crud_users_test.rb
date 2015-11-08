@@ -9,8 +9,6 @@ class AdminCrudUsersTest < ActionDispatch::IntegrationTest
 
     click_link "New User"
 
-    assert new_user_path, current_path
-
     fill_in "Username", with: "spaige"
     fill_in "Password", with: 'password'
     fill_in "First name", with: "Shannon"

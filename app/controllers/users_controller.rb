@@ -10,12 +10,12 @@ class UsersController < ApplicationController
     @admin = User.find(params[:admin_id]) if params[:admin_id]
     @user = User.new(user_params)
     if @user.save
-      if @admin
-        redirect_to admin_path(@admin)
-      else
+      # if @admin
+      #   redirect_to admin_path(@admin)
+      # else
         session[:user_id] = @user.id
         redirect_to user_path(@user)
-      end
+      # end
     else
       flash.now[:error] = @user.errors.full_messages.join(', ')
       render :new
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
+    session.clear
     redirect_to root_path
   end
 
