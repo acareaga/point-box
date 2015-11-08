@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
   root to: 'sessions#new'
 
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :admin, only: [:show]
-  resources :rewards, only: [:show]
 
-  namespace :admin do
-    resources :rewards, only: [:new, :create, :edit, :destroy]
+  resources :users, only: [:new, :create, :show]
+  resources :rewards, only: [:show, :index]
+
+  resources :admin do
+    resources :rewards, :controller => 'admin/rewards'
+    resources :users, :controller => 'admin/users'
   end
 end

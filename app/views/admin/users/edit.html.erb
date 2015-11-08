@@ -1,0 +1,19 @@
+<h1>Edit account</h1>
+
+<%= form_for(@user, url: admin_user_path(@user, admin_id: @admin)) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :top_destination %>
+  <%= f.text_field :top_destination %>
+  <% if @admin %>
+    <%= f.label :points_available %>
+    <%= f.text_field :points_available %>
+  <% end %>
+  <%= f.submit "Update Account" %>
+<% end %>
