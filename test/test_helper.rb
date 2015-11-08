@@ -23,6 +23,12 @@ class ActionDispatch::IntegrationTest
                 top_destination: "Bora Bora")
   end
 
+  def create_reward
+    Reward.create(name: "Bora Bora",
+                  point_value: "500",
+                  description: "Best vacation ever!")
+  end
+
   def login_user
     create_user
 
@@ -44,19 +50,5 @@ class ActionDispatch::IntegrationTest
     fill_in "Username",        with: "aaron"
     fill_in "Password",        with: 'password'
     click_button "Login"
-  end
-
-  def create_reward
-    click_link "New Reward"
-
-    assert new_admin_reward_path, current_path
-
-    fill_in "Name", with: "Bora Bora"
-    fill_in "Point Value", with: "500"
-    fill_in "Description", with: 'The best vacation ever!'
-    click_button "Create Reward"
-
-    assert page.has_content?("Admin Dashboard")
-    assert page.has_content?("Bora Bora")
   end
 end

@@ -17,11 +17,16 @@ class Admin::RewardsController < Admin::BaseController
   end
 
   def edit
+    @admin = User.find(params[:admin_id])
+    @reward = Reward.find(params[:id])
   end
 
   def update
+    @admin = User.find(params[:admin_id])
+    @reward = Reward.find(params[:id])
     if @reward.update(reward_params)
-      redirect_to @reward
+      flash.notice = "Reward #{@reward.name} Updated!"
+      redirect_to admin_path(@admin)
     else
       flash.now[:errors] = @reward.error.full_messages.join(" ,")
       render :edit
@@ -29,8 +34,11 @@ class Admin::RewardsController < Admin::BaseController
   end
 
   def destroy
-    Reward.destroy(params[:id])
-    redirect_to admin_path(params[:format])
+    @admin = User.find(params[:admin_id])
+    @reward = Reward.find(params[:id])
+    @reward.destroy
+    flash.notice = "Reward Deleted"
+    redirect_to admin_path(@admin)
   end
 
   private
