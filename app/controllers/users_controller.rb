@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_current_user, only: [:show]
+  
   def new
     @admin = User.find(params[:admin_id]) if params[:admin_id]
     @user = User.new
@@ -21,11 +23,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
       flash.notice = "#{@user.username} Updated!"
       redirect_to user_path(@user)
@@ -36,11 +38,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def destroy
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
     redirect_to root_path
   end

@@ -1,8 +1,12 @@
 class Admin::RewardsController < Admin::BaseController
+  before_action :set_up
+
+  def set_up
+    @admin = current_user
+    @reward = Reward.new
+  end
 
   def new
-    @admin = User.find(params[:admin_id])
-    @reward = Reward.new
   end
 
   def create
@@ -17,12 +21,10 @@ class Admin::RewardsController < Admin::BaseController
   end
 
   def edit
-    @admin = User.find(params[:admin_id])
     @reward = Reward.find(params[:id])
   end
 
   def update
-    @admin = User.find(params[:admin_id])
     @reward = Reward.find(params[:id])
     if @reward.update(reward_params)
       flash.notice = "Reward #{@reward.name} Updated!"
@@ -34,7 +36,6 @@ class Admin::RewardsController < Admin::BaseController
   end
 
   def destroy
-    @admin = User.find(params[:admin_id])
     @reward = Reward.find(params[:id])
     @reward.destroy
     flash.notice = "Reward Deleted"
