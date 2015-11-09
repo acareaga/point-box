@@ -3,7 +3,6 @@ class Admin::UsersController < Admin::BaseController
 
   def set_up
     @admin = current_user
-
   end
 
   def new
