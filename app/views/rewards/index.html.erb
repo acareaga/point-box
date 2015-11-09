@@ -2,8 +2,12 @@
 
 <% Reward.all.each do |reward| %>
   <div id=<%="#{reward.name.downcase}" %>>
-    <%= reward.name %>
-    <%= reward.description %>
-    <%= link_to "Purchase Reward", user_rewards_path(@user, reward_id: reward.id), method: :post %>
+    <%= reward.name %><br>
+    <% if reward.image.exists? %>
+      <%= image_tag(reward.image.url, width:"150")%><br>
+    <% end %>
+    <%= reward.point_value %><br>
+    <%= reward.description %><br>
+    <%= link_to "Purchase Reward", user_rewards_path(@user, reward_id: reward.id), method: :post %><br><br>
   </div>
 <% end %>
