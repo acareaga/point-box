@@ -5,8 +5,8 @@ class AdminLoginTest < ActionDispatch::IntegrationTest
     login_admin
 
     assert page.has_content?("Admin Dashboard")
-    assert page.has_content?("Users:")
-    assert page.has_content?("Rewards:")
+    assert page.has_content?("Users")
+    assert page.has_content?("Rewards")
     assert page.has_content?("Logout")
   end
 
