@@ -1,26 +1,44 @@
-<h1>Admin Dashboard</h1>
-
-<h2>Rewards:</h2>
-<% Reward.all.each do |reward| %>
-  <div id = <%=reward.name.downcase %> >
-  <%= reward.name %><br>
-  <%= reward.description %><br>
-  <% if reward.image.exists? %>
-    <%= image_tag(reward.image.url, width:"150")%><br>
-  <% end %>
-  <%= link_to "Edit", edit_admin_reward_path(@admin, reward) %> |
-  <%= link_to "Delete", admin_reward_path(@admin, reward), method: :delete %><br><br>
-<% end %>
-
-<%= link_to "New Reward", new_admin_reward_path(@admin)  %>
-
-<h2>Users:</h2>
-<% User.all.each do |user| %>
-  <div id = <%=user.username.downcase %> >
-  <%= user.username %><br>
-  <%= link_to 'Edit User', edit_admin_user_path(@admin, user) %> |
-  <%= link_to 'Delete User', admin_user_path(@admin, user), method: :delete %><br><br>
+<h2>Admin Dashboard</h2>
+<div class="row" id="admin-dashboard">
+  <div class="col s12 m12">
+     <div class="card blue-grey lighten-5">
+       <div class="card-content white-text">
+         <div class="col s12 m6">
+           <div class="card blue-grey darken-1">
+             <div class="card-content white-text">
+              <h2>Rewards</h2>
+              <h5><%= link_to "New Reward", new_admin_reward_path(@admin)  %></h5>
+              <% Reward.all.each do |reward| %>
+                  <div id = <%=reward.name.downcase %> >
+                  <h4><%= reward.name %></h4>
+                  <% if reward.image.exists? %>
+                    <img class="z-depth-3" width="400"<%= image_tag(reward.image.url, width:"150")%></img><br>
+                  <% end %>
+                  <h5><%= reward.description %></h5>
+                  <h5><%= link_to "Edit", edit_admin_reward_path(@admin, reward) %> | <%= link_to "Delete", admin_reward_path(@admin, reward), method: :delete %></h5><br><br>
+                <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
 
-<%= link_to "New User", new_admin_user_path(@admin)  %>
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <table>
+        <h2>Users</h2>
+        <h5><%= link_to "New User", new_admin_user_path(@admin)  %></h5>
+        <% User.all.each do |user| %>
+          <div id = <%=user.username.downcase %> >
+          <h4><%= user.username %></h4>
+          <h5><%= link_to 'Edit User', edit_admin_user_path(@admin, user) %> | <%= link_to 'Delete User', admin_user_path(@admin, user), method: :delete %></h5><br><br>
+          </div>
+        <% end %>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

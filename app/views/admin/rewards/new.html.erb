@@ -1,13 +1,20 @@
-<h1>Hello, <%=@admin.first_name %>. Please Create Reward</h1>
-
-<%= form_for(@reward, url: admin_rewards_path(@admin)) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :point_value, "Point Value" %>
-  <%= f.text_field :point_value %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :image, "Upload an Image" %>
-  <%= f.file_field :image %>
-  <%= f.submit "Create Reward" %>
-<% end %>
+<h2>Hello, <%=@admin.first_name %>. Please Create Reward</h2>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m8 l12">
+      <div class="card-panel blue-grey lighten-5">
+        <%= form_for(@reward, url: admin_rewards_path(@admin)) do |f| %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= f.label :point_value, "Point Value" %>
+          <%= f.text_field :point_value %>
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+          <%= f.label :image, "Upload an Image" %>
+          <%= f.file_field :image %><br><br>
+          <%= f.submit "Create Reward" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
