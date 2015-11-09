@@ -3,16 +3,17 @@
      <div class="card blue-grey lighten-5">
        <div class="card-content white-text">
 
-         <div class="col s12 m12">
+         <div class="col s12 m12" id="app-detail-padding">
            <div class="card blue-grey darken-1">
              <div class="card-content white-text">
 
               <h1>Welcome <%= @user.first_name %></h1>
               <h5>Points: <%= @user.reload.points_available %></h5>
               <h5>Points Redeemed: <%= @user.reload.points_redeemed %></h5><br>
-              <h5><%= link_to "View Rewards to Purchase", user_rewards_path(@user) %></h5><br>
+              <h5><%= link_to "Edit Account", edit_user_path(@user) %> | <%= link_to "Delete Account", user_path(@user), method: :delete %></h5><br>
 
               <h3>Rewards Purchased</h3>
+              <h5><%= link_to "View Rewards to Purchase", user_rewards_path(@user) %></h5>
               <% @user.rewards.each do |reward| %>
                 <h4><%= reward.name %><br></h4>
                 <% if reward.image.exists? %>
@@ -20,7 +21,6 @@
                 <% end %>
                 <h5><%= reward.description %></h5>
               <% end %> <br>
-              <h5><%= link_to "Edit Account", edit_user_path(@user) %> | <%= link_to "Delete Account", user_path(@user), method: :delete %></h5>
             </div>
           </div>
         </div>
